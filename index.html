@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Convivial TeamWork</title>
+    <link rel="icon" href="imagens/Sunny.png" type="image/png" sizes="8x8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="sobrenos.html">Sobre nós</a>
+        <a href="formulario.html">Contato</a>
+        <a href="tabela.html">Orçamentos</a>
+    </nav>
+
+    <header>
+        <h1>Convivial TeamWork</h1>
+        <p>Empresa de Desenvolvimento de Jogos Eletrônicos</p>
+    </header>
+
+    <section id="sobre">
+        <h2>Quem somos</h2>
+        <p>Nós somos a Convivial, uma empresa desenvolvedora de jogos eletrônicos fundada em 2025. Gostaria de receber
+            notícias do nosso progresso? Siga-nos nas redes sociais!</p>
+        <a href="https://instagram.com/ConvivialTeamWorkBr" target="_blank">@ConvivialTeamWorkBr</a>
+
+    </section>
+
+    <section id="jogos">
+        <div class="carrossel">
+            <button class="btn-prev">&#10094;</button>
+
+            <div class="carrossel-inner">
+                <img src="imagens/lightingPixel.png">
+                <img src="imagens/eldorado.png">
+                <img src="imagens/legionários1.png">
+                <img src="imagens/puzzle.png">
+            </div>
+
+            <button class="btn-next">&#10095;</button>
+        </div>
+
+
+        <h1>Nossos Jogos</h1>
+        <table>
+            <tr>
+                <td>
+                    <a href="embreve.html"><img src="imagens/lightingPixel.png" width="250"></a>
+                    <h1>Categoria Pixel - Lighting Pixel</h1>
+
+                </td>
+                <td>
+                    <a href="embreve.html"><img src="imagens/eldorado.png" width="170"></a>
+                    <h1>Categoria Aventura - A Cidade Perdida de El Dorado</h1>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="embreve.html"><img src="imagens/legionários1.png" width="200"></a>
+                    <h1>Categoria RPG - Legionários 1</h1>
+                </td>
+                <td>
+                    <a href="embreve.html"><img src="imagens/puzzle.png" width="300"></a>
+                    <h1>Categoria Educação - Puzzle do HTML</h1>
+
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Email: contato@convivialteamwork.com</p>
+        <p>Telefone: (11) 3284-8880</p>
+    </section>
+
+    <footer>
+        <p>Direitos reservados à</p>
+        <p>©2025-2025 Convivial TeamWork</p>
+    </footer>
+
+
+
+    <script>
+        window.addEventListener('load', function () {
+            let index = 0;
+            const inner = document.querySelector('.carrossel-inner');
+            if (!inner) return;
+            const slides = Array.from(inner.children);
+            const total = slides.length;
+            if (total === 0) return;
+
+            slides.forEach(slide => {
+                slide.style.flex = '0 0 100%';
+                slide.style.boxSizing = 'border-box';
+            });
+
+            function atualizarCarrossel() {
+                inner.style.transform = 'translateX(' + (-index * 100) + '%)';
+            }
+
+            function next() {
+                index = (index + 1) % total;
+                atualizarCarrossel();
+            }
+
+            function prev() {
+                index = (index - 1 + total) % total;
+                atualizarCarrossel();
+            }
+
+            const btnNext = document.querySelector('.btn-next');
+            const btnPrev = document.querySelector('.btn-prev');
+
+            if (btnNext) {
+                btnNext.addEventListener('click', function () {
+                    next();
+                    resetAutoplay();
+                });
+            }
+
+            if (btnPrev) {
+                btnPrev.addEventListener('click', function () {
+                    prev();
+                    resetAutoplay();
+                });
+            }
+
+            let autoplay = setInterval(next, 4000);
+
+            function resetAutoplay() {
+                clearInterval(autoplay);
+                autoplay = setInterval(next, 4000);
+            }
+
+            atualizarCarrossel();
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
